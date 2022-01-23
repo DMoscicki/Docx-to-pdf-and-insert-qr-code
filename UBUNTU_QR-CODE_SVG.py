@@ -4,7 +4,6 @@ import PyPDF2 as pypdf
 from reportlab.graphics import renderPDF
 from reportlab.pdfgen import canvas
 from svglib.svglib import svg2rlg
-import fitz
 from docx2pdf import convert # is not working on Linux systems
 import qrcode.image.svg
 from subprocess import Popen
@@ -30,7 +29,7 @@ def qr_img():
     return saved_qr
 
 
-#convertation
+#convertation Ubuntu
 
 libre_office_exe = r"soffice"  # calling the libreoffice
 sample_doc = 'Cover Letter1.docx'  # input_docx
@@ -44,12 +43,8 @@ def convert_to_pdf_1(input_docx, out_folder):
     print([libre_office_exe, '--convert-to', 'pdf', input_docx])
     p.communicate()
 
-# def convert_to_pdf_2(docx_input, out_folder):
-#     s = Popen([libre_office_exe, '--headless', '--convert-to', 'pdf', '--outdir',
-#                out_folder, docx_input])
-#     print([libre_office_exe, '--convert-to', 'pdf', docx_input])
-#     s.communicate()
 
+#insert svg to pdf
 
 def insert_to_pdf():
     image_path = "qrcode.svg" #
@@ -72,9 +67,8 @@ def insert_to_pdf():
             background.mergePage(foreground)
             writer.addPage(background)
             with open("test_svg_file.pdf", "wb") as outFile:
-                writer.write(outFile)
+                writer.write(outFile) #output
 
 qr_img()
 convert_to_pdf_1(sample_doc, out_folder)
-# convert_to_pdf_2(docx_input, out_folder)
 insert_to_pdf()
