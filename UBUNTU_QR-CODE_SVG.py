@@ -25,21 +25,20 @@ def qr_img():
     img = qrcode.make(data, image_factory=factory)
 
     img.save("qrcode.svg")
-    saved_qr = "qrcode.svg"
+    saved_qr = "qrcode.svg" #save the qr-code svg
     return saved_qr
 
 
-#convertation Ubuntu
+#convertation Ubuntu 20.04
 
 libre_office_exe = r"soffice"  # calling the libreoffice
 sample_doc = 'Cover Letter1.docx'  # input_docx
-# docx_input = 'file_for_svg.docx' # second file for svg
 out_folder = '/home/dmitrii/PycharmProjects/pythonProject/'  # output folder
 new_folder = '/home/dmitrii/PycharmProjects/pythonProject/'
 
 def convert_to_pdf_1(input_docx, out_folder):
     p = Popen([libre_office_exe, '--headless', '--convert-to', 'pdf', '--outdir',
-                out_folder, input_docx])  # command
+                out_folder, input_docx])  # command in terminal
     print([libre_office_exe, '--convert-to', 'pdf', input_docx])
     p.communicate()
 
@@ -47,12 +46,12 @@ def convert_to_pdf_1(input_docx, out_folder):
 #insert svg to pdf
 
 def insert_to_pdf():
-    image_path = "qrcode.svg" #
+    image_path = "qrcode.svg" #image 
     filename = "file_for_svg.pdf" # input file
     my_pdf = canvas.Canvas(filename)
     drawing = svg2rlg(image_path)
-    renderPDF.draw(drawing, my_pdf, 240, 30)
-    my_pdf.save()
+    renderPDF.draw(drawing, my_pdf, 265, 30) #coordinates
+    my_pdf.save() #save the new file with image
 
 
     with open("Cover Letter1.pdf",  "rb") as inFile, open("file_for_svg.pdf", "rb") as overlay: # open 2 files
