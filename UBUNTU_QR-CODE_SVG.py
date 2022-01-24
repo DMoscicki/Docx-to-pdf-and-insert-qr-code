@@ -52,7 +52,8 @@ def insert_to_pdf():
     drawing = svg2rlg(image_path)
     renderPDF.draw(drawing, my_pdf, 265, 30) #coordinates
     my_pdf.save() #save the new file with image
-
+    
+# merge 2 pdf    
 
     with open("Cover Letter1.pdf",  "rb") as inFile, open("file_for_svg.pdf", "rb") as overlay: # open 2 files
         original = pypdf.PdfFileReader(inFile)
