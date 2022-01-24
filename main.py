@@ -25,7 +25,7 @@ def conv_pdf():
 
 def insert_to_pdf():
     image_path = "qr.png" # image svg
-    img_rect = fitz.Rect(510, 760, 590, 835)
+    img_rect = fitz.Rect(510, 760, 590, 835) #coordinates
     doc = fitz.open("Test1.pdf") #converted .docx
     for page_doc in range(len(doc)): # cicle for pages
         page = doc[page_doc]
